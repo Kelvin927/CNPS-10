@@ -137,10 +137,13 @@ dmypy.json
 venv/
 .venv/
 
-# Data files (some may be large)
-*.csv
-!**/schema.csv
-!**/sample_data.csv
+# Large or temporary data files
+outputs/data/cnps10_official_based_*.csv
+outputs/data/cnps10_processed_*.csv
+
+# But keep essential data files
+!outputs/cnps10_ranking_2025.csv
+!outputs/data/sample_*.csv
 
 # Log files
 *.log
