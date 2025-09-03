@@ -171,20 +171,6 @@ Thumbs.db
 # Streamlit
 .streamlit/secrets.toml
 
-# Output directories (keep structure, ignore content)
-outputs/data/*.csv
-outputs/analysis/*.json
-outputs/visualizations/*.png
-outputs/visualizations/*.jpg
-outputs/visualizations/*.pdf
-outputs/reports/*.pdf
-outputs/reports/*.docx
-
-# Keep essential output files
-!outputs/data/.gitkeep
-!outputs/analysis/.gitkeep
-!outputs/visualizations/.gitkeep
-!outputs/reports/.gitkeep
 
 # Memory profiling
 *.prof
