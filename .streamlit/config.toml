@@ -1,0 +1,25 @@
+# CNPS-10 Streamlit Configuration
+# Academic Research Platform Settings
+
+[server]
+port = 8501
+enableCORS = false
+enableXsrfProtection = false
+maxUploadSize = 200
+maxMessageSize = 200
+
+[theme]
+primaryColor = "#1f77b4"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#262730"
+
+[browser]
+gatherUsageStats = false
+
+[runner]
+magicEnabled = true
+
+[logger]
+level = "info"
+messageFormat = "%(asctime)s.%(msecs)03d %(name)s: %(levelname)s: %(message)s"

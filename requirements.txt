@@ -1,0 +1,49 @@
+# CNPS-10: Comprehensive National Power Assessment System
+# Requirements file for academic research platform
+# Version: 3.0.0
+
+# Core data processing and analysis
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Statistical analysis and machine learning
+scikit-learn>=1.3.0
+statsmodels>=0.14.0
+
+# Visualization libraries
+plotly>=5.15.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Web interface framework
+streamlit>=1.28.0
+
+# Development and testing
+pytest>=7.0.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Data validation and quality
+cerberus>=1.3.0
+
+# Memory optimization
+memory-profiler>=0.60.0
+
+# Testing framework (for development)
+pytest>=7.4.0
+
+# Optional: Enhanced terminal interface
+rich>=13.5.0
+
+# Data format and compatibility
+openpyxl>=3.1.0  # For Excel file support
+
+# Data collection and processing
+requests>=2.31
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+openpyxl>=3.1.0
+
+# Development and analysis
+jupyter>=1.0.0
