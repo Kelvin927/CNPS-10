@@ -199,7 +199,7 @@ def calculate_gini_coefficient(scores):
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/cnps-10/cnps-10.git
+git clone https://github.com/Kelvin927/cnps-10
 cd cnps-10
 ```
 
@@ -234,7 +234,7 @@ python3 data_generator.py
 # Using the provided script
 ./start.sh
 
-# Or directly with Streamlit
+# Or directly with Streamlit   
 streamlit run main.py
 ```
 
@@ -242,19 +242,6 @@ streamlit run main.py
 
 Open your web browser and navigate to `http://localhost:8501`
 
-### Docker Installation (Alternative)
-
-```dockerfile
-FROM python:3.9-slim
-
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY . .
-EXPOSE 8501
-
-CMD ["streamlit", "run", "main.py", "--server.port=8501", "--server.address=0.0.0.0"]
 ```
 
 ## System Components
@@ -907,28 +894,6 @@ We welcome contributions from the academic community:
    - Documentation improvements
    - Testing enhancements
 
-### Contribution Process
-
-1. **Fork the Repository**
-   ```bash
-   git fork https://github.com/cnps-10/cnps-10.git
-   ```
-
-2. **Create Feature Branch**
-   ```bash
-   git checkout -b feature/your-improvement
-   ```
-
-3. **Implement Changes**
-   - Follow existing code style
-   - Add comprehensive tests
-   - Update documentation
-
-4. **Submit Pull Request**
-   - Describe changes clearly
-   - Include test results
-   - Reference relevant literature
-
 ### Code of Conduct
 
 All contributors must adhere to academic standards:
@@ -937,25 +902,6 @@ All contributors must adhere to academic standards:
 - Transparent methodology disclosure
 - Collaborative peer review
 - Constructive feedback provision
-
-## Future Development
-
-### Planned Enhancements
-
-1. **Version 2.1** (Q2 2025)
-   - Real-time data integration
-   - Enhanced visualization options
-   - Mobile-responsive interface
-
-2. **Version 2.2** (Q4 2025)
-   - Machine learning predictions
-   - Scenario modeling capabilities
-   - Advanced export formats
-
-3. **Version 3.0** (2026)
-   - Multi-language support
-   - Cloud deployment options
-   - API development
 
 ### Research Roadmap
 
@@ -998,11 +944,6 @@ SOFTWARE.
 - **Principal Investigator**: CNPS Research Team
 - **Technical Lead**: System Architecture Team
 - **Data Science Lead**: Analytics Team
-
-### Support Channels
-- **GitHub Issues**: [https://github.com/cnps-10/cnps-10/issues](https://github.com/cnps-10/cnps-10/issues)
-- **Documentation**: [https://github.com/cnps-10/cnps-10/wiki](https://github.com/cnps-10/cnps-10/wiki)
-- **Academic Collaboration**: research@cnps-10.org
 
 ### Acknowledgments
 
