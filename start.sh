@@ -1,19 +1,16 @@
 #!/bin/bash
-# CNPS-10 Academic Research Platform Startup Script
-# Version 2.0 - Enhanced Academic Features
+# CNPS-10 Educational Project Startup Script
 
 set -e  # Exit on any error
 
-echo "🔬 CNPS-10: Academic Research Platform v2.0"
-echo "=============================================="
-echo "📊 Enhanced with 7-tab academic interface:"
-echo "   • Current Rankings"
-echo "   • Trend Analysis" 
-echo "   • 🆕 Academic Analysis (Correlation, Power Transitions)"
-echo "   • 📈 Statistical Summary (Enhanced)" 
-echo "   • 🆕 Geopolitical Mapping"
-echo "   • 🆕 Research Reports & Citations"
-echo "   • About & Documentation"
+echo "🎓 CNPS-10: Educational Data Analysis Tool"
+echo "=========================================="
+echo "📊 Interactive web interface with:"
+echo "   • Data Overview & Rankings"
+echo "   • Trend Analysis"
+echo "   • Statistical Analysis"
+echo "   • Data Export"
+echo "   • Methodology Transparency"
 echo ""
 
 # Check Python version
@@ -43,21 +40,21 @@ fi
 
 # Check if data exists, generate if needed
 if [ ! -f "outputs/data/cnps10_official_based_172countries_20250903_022541.csv" ]; then
-    echo "📊 Generating multi-year research data..."
+    echo "📊 Generating educational dataset..."
     python data_generator.py
-    echo "✅ Research datasets ready (5 years, 172 countries)"
+    echo "✅ Educational dataset ready (174 countries, 51 years)"
 else
-    echo "✅ Research data already exists"
+    echo "✅ Educational data already exists"
 fi
 
 # Run tests (optional)
 echo ""
-read -p "🧪 Run academic validation tests? (y/N): " run_tests
+read -p "🧪 Run tests to verify functionality? (y/N): " run_tests
 if [[ $run_tests =~ ^[Yy]$ ]]; then
-    echo "🧪 Running academic validation tests..."
+    echo "🧪 Running tests..."
     python tests/run_tests.py
     if [ $? -eq 0 ]; then
-        echo "✅ All academic tests passed"
+        echo "✅ All tests passed"
     else
         echo "❌ Some tests failed, but continuing..."
     fi
@@ -65,17 +62,17 @@ fi
 
 # Start the web application
 echo ""
-echo "🚀 Starting CNPS-10 Academic Research Platform..."
+echo "🚀 Starting CNPS-10 Educational Tool..."
 echo "📍 Access at: http://localhost:8501"
 echo ""
-echo "📚 New Academic Features Available:"
-echo "   • Correlation Matrix Analysis"
-echo "   • Power Transition Modeling"
-echo "   • Distribution & Concentration Analysis"
-echo "   • Multi-dimensional Radar Comparisons"
-echo "   • Regional Power Mapping"
-echo "   • Exportable Research Reports"
-echo "   • Academic Citation Guidelines"
+echo "📚 Features Available:"
+echo "   • Interactive data visualization"
+echo "   • Educational demonstrations"
+echo "   • Data analysis techniques"
+echo "   • Export capabilities"
+echo ""
+echo "⚠️  EDUCATIONAL DISCLAIMER: This tool uses modeled data for learning purposes only."
+echo "    Rankings and assessments are not authoritative."
 echo ""
 echo "🛑 Press Ctrl+C to stop the application"
 echo ""

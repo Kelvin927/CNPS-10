@@ -3,151 +3,113 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
-[![Tests](https://img.shields.io/badge/tests-18%20passed-green.svg)](./tests/)
+[![Tests](https://img.shields.io/badge/tests-15%20passed-green.svg)](./tests/)
 
-## Abstract
+## Overview
 
-The **Comprehensive National Power Assessment System (CNPS-10)** is an advanced analytical framework designed for academic research in international relations, providing systematic measurement and comparison of national power capabilities across multiple dimensions. This system employs rigorous statistical methodologies to assess the relative power positions of 172 countries worldwide from 2025 to 2029, offering scholars, policymakers, and analysts a robust platform for understanding global power dynamics.
+The **CNPS-10 (Comprehensive National Power Assessment System)** is an open-source educational project that demonstrates multi-dimensional analysis of national capabilities. This system serves as a learning platform for data visualization, statistical analysis, and web application development using Python.
 
-The system integrates nine core dimensions of national power: economic capabilities, military strength, technological innovation, diplomatic influence, governance quality, space capabilities, intelligence systems, geographic scale, and social power. Through sophisticated data processing algorithms and interactive visualization tools, CNPS-10 enables comprehensive analysis of power transitions, correlation studies, and geopolitical mapping.
+**⚠️ Important Note**: This is a research demonstration project using modeled data for educational purposes. The rankings and assessments are not authoritative and should not be used for policy or analytical decisions.
+
+### Key Features
+
+- **Multi-dimensional Analysis**: Analyzes 9 different aspects of national capabilities
+- **Interactive Web Interface**: Built with Streamlit for easy exploration
+- **Time Series Data**: Covers 2000-2050 with both historical and projected data
+- **Statistical Tools**: Includes correlation analysis, trend analysis, and ranking systems
+- **Open Source**: Transparent methodology and freely available code
 
 ## Table of Contents
 
-- [System Architecture](#system-architecture)
-- [Research Methodology](#research-methodology)
-- [Installation Guide](#installation-guide)
-- [System Components](#system-components)
-- [Data Processing Pipeline](#data-processing-pipeline)
-- [Academic Features](#academic-features)
-- [Usage Instructions](#usage-instructions)
-- [Testing Framework](#testing-framework)
-- [Development Process](#development-process)
-- [Technical Specifications](#technical-specifications)
-- [Citation Guidelines](#citation-guidelines)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [Data Description](#data-description)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Development](#development)
 - [Contributing](#contributing)
 - [License](#license)
 
-## System Architecture
+## Installation
 
-### Overview
+### Prerequisites
 
-CNPS-10 follows a modular architecture designed for scalability, maintainability, and academic rigor. The system consists of three primary layers:
+- Python 3.8 or higher
+- pip package manager
 
-1. **Data Processing Layer** (`data_generator.py`)
-2. **Core Analysis Engine** (`main.py`)
-3. **Testing and Validation Framework** (`tests/`)
+### Steps
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    CNPS-10 System Architecture             │
-├─────────────────────────────────────────────────────────────┤
-│  Web Interface Layer (Streamlit)                           │
-│  ┌─────────────────┬─────────────────┬─────────────────┐   │
-│  │  Current        │  Trend          │  Academic       │   │
-│  │  Rankings       │  Analysis       │  Analysis       │   │
-│  └─────────────────┴─────────────────┴─────────────────┘   │
-├─────────────────────────────────────────────────────────────┤
-│  Core Analysis Engine (CNPS10System Class)                 │
-│  ┌─────────────────┬─────────────────┬─────────────────┐   │
-│  │  Statistical    │  Correlation    │  Power          │   │
-│  │  Analysis       │  Analysis       │  Transitions    │   │
-│  └─────────────────┴─────────────────┴─────────────────┘   │
-├─────────────────────────────────────────────────────────────┤
-│  Data Processing Layer                                      │
-│  ┌─────────────────┬─────────────────┬─────────────────┐   │
-│  │  Data           │  Score          │  Multi-year     │   │
-│  │  Validation     │  Normalization  │  Generation     │   │
-│  └─────────────────┴─────────────────┴─────────────────┘   │
-├─────────────────────────────────────────────────────────────┤
-│  Data Storage Layer                                         │
-│  ┌─────────────────┬─────────────────┬─────────────────┐   │
-│  │  Raw Data       │  Processed      │  Generated      │   │
-│  │  (CSV)          │  Data (CSV)     │  Datasets       │   │
-│  └─────────────────┴─────────────────┴─────────────────┘   │
-└─────────────────────────────────────────────────────────────┘
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Kelvin927/CNPS-10.git
+   cd cnps-10
+   ```
+
+2. **Create virtual environment (recommended)**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Quick Start
+
+Start the web application:
+
+```bash
+# Option 1: Use the start script
+./start.sh
+
+# Option 2: Run directly with streamlit
+streamlit run main.py
 ```
 
-### Design Principles
+Open your browser and navigate to `http://localhost:8501` to access the CNPS-10 interface.
 
-1. **Academic Rigor**: All algorithms and methodologies are based on established academic literature
-2. **Modularity**: Each component is independently testable and maintainable
-3. **Scalability**: Architecture supports easy addition of new dimensions or countries
-4. **Reproducibility**: All analyses are deterministic and fully reproducible
-5. **Performance**: Memory-optimized for handling large datasets efficiently
+## Project Structure
 
-## Research Methodology
+```
+cnps-10/
+├── main.py                 # Main web application (Streamlit)
+├── data_generator.py      # Data generation utilities
+├── requirements.txt       # Python dependencies
+├── start.sh              # Quick start script
+├── outputs/              # Generated data files
+│   ├── data/            # Main dataset
+│   └── cnps10_ranking_2025.csv
+├── tests/               # Test suite
+│   ├── test_cnps10_system.py
+│   └── run_tests.py
+└── README.md           # This file
+```
 
-### Theoretical Framework
+## Data Description
 
-The CNPS-10 system is grounded in comprehensive national power theory, drawing from seminal works in international relations literature. The framework conceptualizes national power as a multidimensional construct comprising both tangible and intangible capabilities.
+### Dataset Overview
 
-#### Power Dimensions
+- **Countries**: 174 countries worldwide
+- **Time Range**: 2000-2050 (historical and projected data)
+- **Dimensions**: 9 aspects of national capabilities
+- **Data Type**: Modeled data for educational purposes
 
-1. **Economic Power (Weight: 25%)**
-   - GDP (Purchasing Power Parity)
-   - International trade volume
-   - Financial market capitalization
-   - Economic resilience indicators
+### Nine Dimensions
 
-2. **Military Power (Weight: 20%)**
-   - Defense expenditure
-   - Military personnel and equipment
-   - Defense technology capabilities
-   - Strategic reach and projection
+1. **Economy** - Economic indicators and capabilities
+2. **Military** - Defense and security capabilities  
+3. **Technology** - Innovation and technological advancement
+4. **Diplomacy** - International relations and influence
+5. **Governance** - Institutional quality and effectiveness
+6. **Space** - Space technology and capabilities
+7. **Intelligence** - Information and cyber capabilities
+8. **Scale** - Geographic and demographic factors
+9. **Society** - Social and cultural factors
 
-3. **Technological Power (Weight: 15%)**
-   - R&D investment as % of GDP
-   - Patent applications and grants
-   - Digital infrastructure quality
-   - Innovation ecosystem strength
-
-4. **Diplomatic Power (Weight: 12%)**
-   - Embassy and consulate networks
-   - International organization membership
-   - Soft power indices
-   - Cultural influence metrics
-
-5. **Governance Quality (Weight: 10%)**
-   - Government effectiveness
-   - Rule of law indicators
-   - Regulatory quality
-   - Institutional stability
-
-6. **Space Capabilities (Weight: 8%)**
-   - Satellite launches and operations
-   - Space technology development
-   - Space-based assets
-   - Commercial space industry
-
-7. **Intelligence Systems (Weight: 5%)**
-   - Cyber capabilities
-   - Information systems
-   - Intelligence infrastructure
-   - Digital surveillance capacity
-
-8. **Geographic Scale (Weight: 3%)**
-   - Territory size
-   - Population size
-   - Natural resource endowments
-   - Strategic geographic position
-
-9. **Social Power (Weight: 2%)**
-   - Education system quality
-   - Cultural influence
-   - Social cohesion indices
-   - Human development metrics
-
-### Statistical Methodology
-
-#### Data Normalization
-
-The system employs a sophisticated normalization algorithm to ensure comparability across dimensions:
-
-```python
-def normalize_score(raw_score, min_val, max_val, target_min=0.05, target_max=0.85):
-    """
-    Linear normalization with bounded scaling to prevent extreme values
-    that could skew comparative analysis.
+**Data Disclaimer**: This project uses modeled data for demonstration purposes. Rankings are not based on official assessments and should not be considered authoritative.
     """
     normalized = target_min + (raw_score - min_val) / (max_val - min_val) * (target_max - target_min)
     return max(target_min, min(target_max, normalized))
@@ -175,66 +137,39 @@ The system calculates power distribution using the Gini coefficient:
 
 ```python
 def calculate_gini_coefficient(scores):
-    """
-    Measures power concentration across the international system.
-    Values closer to 1 indicate higher concentration.
-    """
-    scores_sorted = np.sort(scores)
-    n = len(scores_sorted)
-    cumsum = np.cumsum(scores_sorted)
-    return (n + 1 - 2 * np.sum(cumsum) / cumsum[-1]) / n
-```
+## Usage
 
-## Installation Guide
+### Web Interface Features
 
-### Prerequisites
+The CNPS-10 web interface provides 8 main sections:
 
-- **Python**: 3.8 or higher
-- **Operating System**: macOS, Linux, or Windows
-- **Memory**: Minimum 4GB RAM (8GB recommended)
-- **Storage**: 500MB free space
+1. **📊 Current Rankings** - View country rankings for any selected year
+2. **📈 Trend Analysis** - Analyze trends over time periods
+3. **🔬 Academic Analysis** - Statistical and correlation analysis
+4. **📋 Statistical Summary** - Comprehensive statistics for selected years
+5. **🗺️ Geopolitical Mapping** - Geographic visualization of power distribution
+6. **📄 Research Reports** - Generated analysis reports
+7. **📖 Methodology** - Detailed explanation of data and methods
+8. **ℹ️ About** - Project information and technical details
 
-### Step-by-Step Installation
+### Basic Operations
 
-#### 1. Clone the Repository
+**Selecting Years**: Use the sidebar to choose single years or year ranges for analysis.
 
-```bash
-git clone https://github.com/Kelvin927/cnps-10
-cd cnps-10
-```
+**Country Comparison**: Select multiple countries to compare their power trajectories.
 
-#### 2. Create Virtual Environment
+**Export Data**: Download visualizations and data for further analysis.
+
+### Command Line Usage
 
 ```bash
-# Create virtual environment
-python3 -m venv venv
+# Generate new data
+python data_generator.py
 
-# Activate virtual environment
-# On macOS/Linux:
-source venv/bin/activate
-# On Windows:
-venv\Scripts\activate
-```
+# Run tests
+python -m pytest tests/ -v
 
-#### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-#### 4. Generate Initial Data
-
-```bash
-python3 data_generator.py
-```
-
-#### 5. Run the System
-
-```bash
-# Using the provided script
-./start.sh
-
-# Or directly with Streamlit   
+# Start web application
 streamlit run main.py
 ```
 
@@ -242,76 +177,36 @@ streamlit run main.py
 
 Open your web browser and navigate to `http://localhost:8501`
 
+## Testing
+
+The project includes a comprehensive test suite to ensure code quality and functionality.
+
+### Running Tests
+
+```bash
+# Run all tests
+python -m pytest tests/ -v
+
+# Run specific test file
+python tests/test_cnps10_system.py
+
+# Check test coverage
+python -m pytest tests/ --cov=. --cov-report=html
 ```
 
-## System Components
+### Test Structure
 
-### 1. Data Generator (`data_generator.py`)
+- `tests/test_cnps10_system.py` - Main test file with 15 test cases
+- **Data Generator Tests** - Test data generation and processing
+- **System Tests** - Test web application functionality  
+- **Data Integrity Tests** - Verify data quality and consistency
 
-The data generation module serves as the foundation of the CNPS-10 system, responsible for processing raw national power indicators and creating normalized, comparable datasets.
-
-#### Key Features:
-- **Official Data Integration**: Processes data from authoritative sources (World Bank, IMF, UN)
-- **Score Normalization**: Implements linear scaling to ensure fair comparison
-- **Multi-year Generation**: Creates temporal datasets with realistic variations
-- **Data Validation**: Comprehensive error checking and consistency verification
-
-#### Implementation Details:
-
-```python
-class CNPS10DataGenerator:
-    def __init__(self, verbose=True):
-        self.verbose = verbose
-        self.original_data = None
-        self.processed_data = None
-        
-    def process_official_data(self, input_file):
-        """
-        Processes raw CSV data and applies normalization algorithms.
-        
-        Args:
-            input_file (str): Path to input CSV file
-            
-        Returns:
-            pd.DataFrame: Processed and normalized data
-        """
-```
-
-#### Data Processing Pipeline:
-
-1. **Raw Data Ingestion**
-   - CSV file parsing with error handling
-   - Data type validation and conversion
-   - Missing value detection and treatment
-
-2. **Score Normalization**
-   - Min-max scaling with bounded ranges
-   - Outlier detection and adjustment
-   - Dimension-specific weighting
-
-3. **Quality Assurance**
-   - Statistical consistency checks
-   - Cross-validation against historical data
-   - Anomaly detection algorithms
-
-### 2. Core Analysis Engine (`main.py`)
-
-The main application provides a comprehensive web interface built on Streamlit, offering seven specialized analysis modules.
-
-#### System Class Architecture:
-
-```python
-class CNPS10System:
-    def __init__(self):
-        self.data = None
-        self.multi_year_data = None
-        self.latest_data = None
-        
-    def load_data(self):
-        """Optimized data loading with memory management."""
-        
-    def get_countries_by_year(self, year):
-        """Efficient year-based data filtering."""
+All tests pass and ensure:
+- Proper data loading and processing
+- Correct statistical calculations
+- Memory optimization
+- Data type consistency
+- Complete Taiwan data removal
         
     def calculate_global_statistics(self):
         """Comprehensive statistical analysis."""
@@ -357,7 +252,7 @@ class CNPS10System:
 
 ### 3. Testing Framework (`tests/`)
 
-The testing suite ensures system reliability and academic rigor through comprehensive unit tests.
+The testing suite ensures system reliability and code quality through comprehensive unit tests.
 
 #### Test Coverage:
 
@@ -510,22 +405,22 @@ def generate_multi_year_data(self, base_year_data, start_year, end_year):
     return pd.concat(multi_year_dataset, ignore_index=True)
 ```
 
-## Academic Features
+## Data Analysis Features
 
 ### Correlation Analysis
 
-The system provides comprehensive correlation analysis between power dimensions:
+The system provides correlation analysis between power dimensions for educational purposes:
 
 ```python
 def perform_correlation_analysis(self, year):
     """
-    Performs Pearson correlation analysis between all power dimensions
+    Educational example: Pearson correlation analysis between power dimensions
     and the overall CNPS-10 score.
     
     Returns:
-    - Correlation matrix
-    - Significance tests
-    - Interpretation guidelines
+    - Correlation matrix for learning
+    - Statistical examples
+    - Data interpretation examples
     """
     data = self.get_countries_by_year(year)
     dimensions = ['economy', 'military', 'tech', 'diplomacy', 'governance', 
@@ -536,43 +431,38 @@ def perform_correlation_analysis(self, year):
     return {
         'correlation_matrix': correlation_matrix,
         'score_correlations': correlation_matrix['cnps10_score'].drop('cnps10_score'),
-        'strongest_correlations': self.identify_strongest_correlations(correlation_matrix),
-        'interpretation': self.generate_correlation_interpretation(correlation_matrix)
+        'educational_insights': self.generate_learning_insights(correlation_matrix)
     }
 ```
 
-### Power Transition Analysis
+### Trend Analysis Example
 
 ```python
-def calculate_power_transitions(self, start_year, end_year):
+def calculate_trend_changes(self, start_year, end_year):
     """
-    Analyzes power transitions between countries over specified time period.
+    Educational example: Analyze changes in country positions over time.
     
-    Methodology based on power transition theory (Organski & Kugler, 1980)
-    and includes:
-    - Rank mobility analysis
-    - Score change calculations
-    - Transition probability estimates
+    Note: This demonstrates data analysis techniques using modeled data.
+    Real-world applications would require verified data sources.
     """
     start_data = self.get_countries_by_year(start_year)
     end_data = self.get_countries_by_year(end_year)
     
-    transitions = []
+    changes = []
     for country in self.get_common_countries(start_data, end_data):
         start_rank = self.get_country_rank(country, start_year)
         end_rank = self.get_country_rank(country, end_year)
         
-        transition_data = {
+        change_data = {
             'country': country,
             'start_rank': start_rank,
             'end_rank': end_rank,
             'rank_change': start_rank - end_rank,
-            'transition_type': self.classify_transition(start_rank, end_rank),
-            'probability': self.calculate_transition_probability(country, start_year, end_year)
+            'change_type': self.classify_change(start_rank, end_rank)
         }
-        transitions.append(transition_data)
+        changes.append(change_data)
     
-    return self.analyze_transition_patterns(transitions)
+    return self.analyze_patterns(changes)
 ```
 
 ### Statistical Distribution Analysis
@@ -617,57 +507,57 @@ def generate_power_distribution_analysis(self, year):
 
 3. **Select Analysis Type**
    - Choose from seven available tabs
-   - Each tab offers specialized analytical tools
+   - Each tab offers specialized analysis tools
 
-### Advanced Academic Usage
+### Educational Usage Examples
 
-#### Conducting Correlation Studies
+#### Learning Correlation Analysis
 
-1. Navigate to "Academic Analysis" tab
+1. Navigate to "Statistical Analysis" tab
 2. Select "Correlation Analysis"
 3. Choose target year for analysis
-4. Interpret correlation matrix and significance tests
-5. Export results for further statistical analysis
+4. Interpret correlation matrix as a learning exercise
+5. Practice data interpretation skills
 
-#### Power Transition Research
+#### Understanding Trend Changes
 
-1. Access "Academic Analysis" tab
-2. Select "Power Transitions" option
-3. Define start and end years for analysis
-4. Review rank changes and transition patterns
-5. Generate academic reports with findings
+1. Access "Trend Analysis" tab
+2. Select time period for comparison
+3. Review rank changes over time
+4. Practice identifying patterns in data
+5. Export results for further practice
 
-#### Statistical Distribution Studies
+#### Statistical Learning
 
-1. Use "Academic Analysis" tab
+1. Use "Statistical Analysis" tab
 2. Select "Distribution Analysis"
-3. Examine power concentration metrics
-4. Analyze Gini coefficients and inequality measures
-5. Compare across different years
+3. Examine data distributions
+4. Learn about statistical measures
+5. Compare patterns across different years
 
-### Data Export and Citation
+### Data Export for Learning
 
-The system provides multiple export formats for academic use:
+The system provides multiple export formats for educational practice:
 
-- **CSV**: Raw data for statistical software (R, STATA, SPSS)
-- **JSON**: Structured data for programming environments
-- **Academic Citations**: Pre-formatted references for publications
+- **CSV**: Raw data for learning statistical software
+- **JSON**: Structured data for programming practice
+- **Educational Examples**: Sample analyses for learning
 
 ## Testing Framework
 
 ### Test Architecture
 
-The CNPS-10 testing framework employs a multi-layered approach:
+The testing framework ensures code quality and educational reliability:
 
 ```python
 class TestCNPS10System(unittest.TestCase):
     """
-    Comprehensive test suite for CNPS-10 system validation.
+    Educational test suite for CNPS-10 system validation.
     
     Test Categories:
-    1. Data integrity tests
-    2. Algorithm accuracy tests
-    3. Statistical consistency tests
+    1. Data integrity verification
+    2. Function correctness tests
+    3. System reliability tests
     4. Performance benchmarks
     5. Interface functionality tests
     """
@@ -704,77 +594,42 @@ python3 tests/run_tests.py --benchmark
 python3 tests/run_tests.py --coverage
 ```
 
-### Test Results Interpretation
+## Development
 
-The test suite provides comprehensive metrics:
+### Technology Stack
 
-- **Accuracy Tests**: Verify algorithm correctness
-- **Performance Tests**: Measure processing speed and memory usage
-- **Consistency Tests**: Ensure reproducible results
-- **Integration Tests**: Validate component interactions
+- **Backend**: Python 3.8+
+- **Web Framework**: Streamlit 
+- **Data Processing**: pandas, numpy
+- **Visualization**: Plotly
+- **Testing**: pytest
 
-## Development Process
+### Project Structure
 
-### System Development Methodology
+The project follows a simple, modular structure:
 
-The CNPS-10 system was developed using an iterative, research-driven approach:
+- `main.py` - Main web application entry point
+- `data_generator.py` - Data generation and processing utilities
+- `tests/` - Test suite with comprehensive coverage
+- `outputs/` - Generated datasets and results
+- `requirements.txt` - Python dependencies
 
-#### Phase 1: Literature Review and Theoretical Foundation (Months 1-2)
-- Comprehensive review of national power literature
-- Analysis of existing measurement frameworks
-- Identification of methodological gaps
-- Development of theoretical framework
+### Contributing
 
-#### Phase 2: Data Architecture Design (Months 3-4)
-- Database schema development
-- Data source identification and validation
-- Normalization methodology design
-- Quality assurance framework establishment
+This is an open-source educational project. Contributions are welcome:
 
-#### Phase 3: Core Algorithm Development (Months 5-7)
-- Implementation of normalization algorithms
-- Statistical analysis module development
-- Correlation analysis functionality
-- Power transition calculation methods
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-#### Phase 4: User Interface Development (Months 8-9)
-- Streamlit interface design
-- Interactive visualization implementation
-- Academic report generation features
-- Export functionality development
+### Code Quality
 
-#### Phase 5: Testing and Validation (Months 10-11)
-- Comprehensive unit test development
-- Performance optimization
-- Academic peer review integration
-- Documentation completion
-
-#### Phase 6: Deployment and Documentation (Month 12)
-- System deployment procedures
-- User manual creation
-- Academic publication preparation
-- Open-source release preparation
-
-### Code Quality Standards
-
-The development process adhered to strict academic software standards:
-
-1. **Documentation**: All functions include comprehensive docstrings
-2. **Type Hints**: Complete type annotation for enhanced reliability
-3. **Error Handling**: Robust exception management throughout
-4. **Performance**: Memory-optimized algorithms for large datasets
-5. **Reproducibility**: Deterministic calculations with fixed random seeds
-
-### Version Control and Collaboration
-
-```bash
-# Development workflow
-git checkout -b feature/new-analysis-method
-git add .
-git commit -m "Add power transition analysis with significance tests"
-git push origin feature/new-analysis-method
-# Create pull request for peer review
-```
+- Code follows Python best practices
+- Comprehensive test coverage (15 tests)
+- Clear documentation and comments
+- Type hints where appropriate
 
 ## Technical Specifications
 
@@ -791,133 +646,32 @@ git push origin feature/new-analysis-method
 ### Dependencies
 
 ```python
-# Core Dependencies
+# Core Dependencies (from requirements.txt)
 streamlit>=1.28.0          # Web interface framework
 pandas>=2.0.0              # Data manipulation
 numpy>=1.24.0              # Numerical computing
 plotly>=5.15.0             # Interactive visualizations
-
-# Statistical Analysis
-scipy>=1.10.0              # Statistical functions
-scikit-learn>=1.3.0        # Machine learning utilities
-statsmodels>=0.14.0        # Advanced statistics
-
-# Testing and Development
 pytest>=7.0.0              # Testing framework
 black>=23.0.0              # Code formatting
-flake8>=6.0.0              # Code linting
-
-# Additional Utilities
-requests>=2.31             # HTTP library
-beautifulsoup4>=4.12.0     # Web scraping
-openpyxl>=3.1.0           # Excel file support
 ```
 
-### Performance Characteristics
+### Performance
 
-| Operation | Time Complexity | Space Complexity | Typical Runtime |
-|-----------|----------------|------------------|-----------------|
-| Data Loading | O(n) | O(n) | 2-5 seconds |
-| Score Calculation | O(n*m) | O(n) | <1 second |
-| Correlation Analysis | O(m²) | O(m²) | <1 second |
-| Multi-year Generation | O(n*y) | O(n*y) | 5-10 seconds |
-| Visualization Rendering | O(n log n) | O(n) | 1-3 seconds |
+Simple performance characteristics for educational use:
 
-*Where n = number of countries, m = number of dimensions, y = number of years*
-
-### Security Considerations
-
-1. **Data Validation**: All input data undergoes strict validation
-2. **SQL Injection Prevention**: Parameterized queries throughout
-3. **File Access Control**: Restricted file system access
-4. **Memory Management**: Automatic garbage collection and cleanup
-5. **Error Disclosure**: Limited error information in production
-
-## Citation Guidelines
-
-### Academic Citation
-
-When using CNPS-10 in academic research, please cite as follows:
-
-**APA Style:**
-```
-CNPS Research Team. (2025). CNPS-10: Comprehensive National Power Assessment System 
-(Version 2.0.0) [Computer software]. https://github.com/cnps-10/cnps-10
-```
-
-**Chicago Style:**
-```
-CNPS Research Team. "CNPS-10: Comprehensive National Power Assessment System." 
-Computer software. Version 2.0.0. 2025. https://github.com/cnps-10/cnps-10.
-```
-
-**MLA Style:**
-```
-CNPS Research Team. CNPS-10: Comprehensive National Power Assessment System. 
-Version 2.0.0, 2025, https://github.com/cnps-10/cnps-10.
-```
-
-### Data Citation
-
-When using CNPS-10 data in publications:
-
-```
-CNPS Research Team. (2025). CNPS-10 National Power Assessment Dataset, 2025-2029 
-[Data set]. https://github.com/cnps-10/cnps-10/releases/latest
-```
-
-### Methodology Citation
-
-For methodological references:
-
-```
-CNPS Research Team. (2025). Multi-dimensional National Power Assessment: 
-Methodology and Implementation in CNPS-10. Technical Documentation. 
-https://github.com/cnps-10/cnps-10/docs/methodology.pdf
-```
-
-## Contributing
-
-### Academic Collaboration
-
-We welcome contributions from the academic community:
-
-1. **Research Contributions**
-   - New analytical methods
-   - Additional data sources
-   - Methodological improvements
-   - Validation studies
-
-2. **Technical Contributions**
-   - Code optimization
-   - Bug fixes
-   - Documentation improvements
-   - Testing enhancements
-
-### Code of Conduct
-
-All contributors must adhere to academic standards:
-
-- Respect for intellectual property
-- Transparent methodology disclosure
-- Collaborative peer review
-- Constructive feedback provision
-
-### Research Roadmap
-
-- Integration with additional international databases
-- Development of predictive modeling capabilities
-- Implementation of uncertainty quantification
-- Creation of comparative historical analysis tools
+- **Data Loading**: Loads 8,874 records in ~3 seconds
+- **Score Calculation**: Real-time calculation for interactive use
+- **Visualization**: Dynamic charts update instantly
+- **Memory Usage**: Optimized for typical educational datasets
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```
+```text
 MIT License
 
-Copyright (c) 2025 CNPS Research Team
+Copyright (c) 2025 CNPS Educational Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -940,23 +694,24 @@ SOFTWARE.
 
 ## Contact Information
 
-### Research Team
-- **Principal Investigator**: CNPS Research Team
-- **Technical Lead**: System Architecture Team
-- **Data Science Lead**: Analytics Team
+For questions about this educational project:
 
-### Acknowledgments
+- Open an issue on GitHub
+- Fork the repository to contribute
+- Use the discussion section for questions
 
-We acknowledge the contributions of:
-- International data providers (World Bank, IMF, UN, OECD)
-- Academic peer reviewers and beta testers
-- Open-source software community
-- International relations research community
+## Acknowledgments
+
+We acknowledge:
+
+- Open data sources (World Bank, UN, OECD)
+- The Python and Streamlit communities
+- Open-source contributors and educators
 
 ---
 
-**Disclaimer**: This system is designed for academic research and educational purposes. The scores and rankings reflect analytical assessments based on available data and established methodologies in international relations. Results should be interpreted within the context of the underlying theoretical framework and data limitations.
+**Educational Disclaimer**: This system is designed for educational purposes only. The data is modeled and generated for learning about data analysis techniques. The rankings and assessments are not authoritative and should not be used for policy decisions or academic research claiming real-world accuracy.
 
-**Last Updated**: September 3, 2025  
+**Last Updated**: January 2025  
 **System Version**: 2.0.0  
 **Documentation Version**: 1.0.0

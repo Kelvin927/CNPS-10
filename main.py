@@ -2,20 +2,21 @@
 # -*- coding: utf-8 -*-
 """
 CNPS-10: Comprehensive National Power Assessment System
-Academic Research Platform - Main Web Interface
+Open Source Research Platform - Main Web Interface
 
 This module provides the main web interface for the CNPS-10 system,
-offering comprehensive national power assessment and comparison capabilities.
+offering national power assessment and comparison capabilities.
 
 Features:
-- Multi-year analysis (2010-2050)
+- Multi-year analysis (2000-2050)
 - Year selection and comparison functionality
 - Statistical analysis and visualizations
-- Academic-grade charts and reports
-- Interactive country comparisons
+- Interactive charts and reports
+- Country comparisons
 
-Author: CNPS-10 Research Team
-Version: 3.0.0
+Author: Open Source Research Project
+Version: 1.0.0
+License: MIT
 """
 
 import streamlit as st
@@ -215,20 +216,20 @@ class CNPS10System:
     
     def _optimize_memory(self):
         """
-        Optimize memory usage by adjusting data types.
+        Optimize memory usage by adjusting data types with improved precision.
         
         Converts appropriate columns to more efficient data types
-        to reduce memory footprint.
+        while maintaining high precision for calculations.
         """
         if self.multi_year_data is not None:
             # Convert year to int16 (saves memory)
             if 'year' in self.multi_year_data.columns:
                 self.multi_year_data['year'] = self.multi_year_data['year'].astype('int16')
                 
-            # Convert scores to float32 (sufficient precision)
+            # Use float64 for scores to maintain high precision (not float32)
             score_cols = [col for col in self.multi_year_data.columns if 'score' in col.lower()]
             for col in score_cols:
-                self.multi_year_data[col] = self.multi_year_data[col].astype('float32')
+                self.multi_year_data[col] = self.multi_year_data[col].astype('float64')
                 
             # Convert categorical columns to category type
             categorical_cols = ['country', 'power_tier']
@@ -240,7 +241,7 @@ class CNPS10System:
         if self.latest_data is not None:
             score_cols = [col for col in self.latest_data.columns if 'score' in col.lower()]
             for col in score_cols:
-                self.latest_data[col] = self.latest_data[col].astype('float32')
+                self.latest_data[col] = self.latest_data[col].astype('float64')  # Use float64 for precision
                 
             categorical_cols = ['country', 'power_tier']
             for col in categorical_cols:
@@ -679,8 +680,8 @@ def main():
     """
     
     # Display main header
-    st.markdown('<div class="main-header">🌍 CNPS-10: Comprehensive National Power Assessment System</div>', unsafe_allow_html=True)
-    st.markdown('<div class="sub-header">Academic Research Platform for Global Power Analysis</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-header">🌍 CNPS-10: National Power Assessment System</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sub-header">Open Source Research Platform for Power Analysis</div>', unsafe_allow_html=True)
     
     # Initialize system
     try:
@@ -756,13 +757,14 @@ def main():
     )
     
     # Main content area
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
         "📊 Current Rankings", 
         "📈 Trend Analysis", 
         "🔬 Academic Analysis",
         "📋 Statistical Summary", 
         "🗺️ Geopolitical Mapping",
         "📄 Research Reports",
+        "📖 Methodology",
         "ℹ️ About"
     ])
     
@@ -1205,7 +1207,7 @@ def main():
                 'Netherlands': 'Europe',
                 'Saudi Arabia': 'Middle East',
                 'Turkey': 'Middle East',
-                'Taiwan': 'Asia-Pacific',
+
                 'Switzerland': 'Europe',
                 'Belgium': 'Europe',
                 'Israel': 'Middle East',
@@ -1483,123 +1485,129 @@ def main():
             """)
     
     with tab7:
+        st.header("📖 Methodology")
+        
+        st.markdown("""
+        ### Data Collection and Processing Methodology
+        
+        #### Data Sources and Transparency
+        
+        **Data Generation Approach:**  
+        The CNPS-10 system uses a realistic modeling approach that combines:
+        - Publicly available national statistics
+        - Historical patterns and trends
+        - Statistical modeling for predictive analysis
+        
+        **Note on Data Nature:**  
+        This is an **open-source research project** using modeled data for academic analysis and demonstration purposes. 
+        The rankings reflect commonly understood global power dynamics but should not be considered official or 
+        authoritative assessments.
+        
+        #### Nine Dimensions of National Power
+        
+        1. **Economic Power** - GDP, trade volumes, economic stability
+        2. **Military Strength** - Defense capabilities, military expenditure
+        3. **Technological Innovation** - R&D investment, patents, high-tech exports
+        4. **Diplomatic Influence** - International relationships, soft power
+        5. **Governance Quality** - Institutional effectiveness, rule of law
+        6. **Space Capabilities** - Space programs, satellite infrastructure
+        7. **Intelligence Systems** - Information gathering and analysis capabilities
+        8. **Geographic Scale** - Territory, population, natural resources
+        9. **Social Power** - Cultural influence, education, social cohesion
+        
+        #### Mathematical Framework
+        
+        **CNPS-10 Score Calculation:**
+        ```
+        CNPS-10 = Σ(Dimension_i × Weight_i × Tier_Multiplier)
+        ```
+        
+        **Power Tier Classifications:**
+        - **Superpower** (≥0.75): Global influence across all dimensions
+        - **Great Power** (0.65-0.74): Regional dominance, global influence in some areas
+        - **Major Power** (0.55-0.64): Significant regional influence
+        - **Regional Power** (0.45-0.54): Important within region
+        - **Middle Power** (0.35-0.44): Moderate influence
+        - **Small Power** (<0.35): Limited influence
+        
+        #### Limitations and Considerations
+        
+        ⚠️ **Important Disclaimers:**
+        - This is a **research demonstration project**, not an official assessment
+        - Data is modeled for educational and research purposes
+        - Rankings are approximate and should not be used for policy decisions
+        - Actual national power involves qualitative factors not captured in quantitative models
+        
+        #### Technical Implementation
+        
+        **Data Processing:**
+        - High-precision calculations (float64)
+        - Temporal analysis (2000-2050)
+        - Statistical validation and testing
+        - Memory optimization for large datasets
+        
+        **Visualization:**
+        - Interactive charts using Plotly
+        - Streamlit web framework
+        - Real-time analysis capabilities
+        """)
+        
+        st.info("""
+        **Academic Usage:** This tool is designed for educational purposes, research demonstrations, 
+        and as a starting point for more sophisticated national power assessment projects.
+        """)
+    
+    with tab8:
         
         st.header("ℹ️ About CNPS-10 System")
         
         st.markdown("""
-        ### Comprehensive National Power Score (CNPS-10) System
+        ### CNPS-10: National Power Assessment System
         
-        **Version:** 2.0 Academic Research Platform  
-        **Last Updated:** January 2025  
-        **Data Coverage:** 172 countries worldwide  
+        **Version:** 1.0 Open Source Research Platform  
+        **Last Updated:** September 2025  
+        **Data Coverage:** 174 countries worldwide  
+        **Time Range:** 2000-2050 (modeled data)
         
-        #### System Overview
-        The CNPS-10 system provides a comprehensive, multi-dimensional assessment of national power 
-        capabilities across multiple domains. This academic research platform enables scholars, 
-        policymakers, and analysts to:
+        #### Project Overview
+        The CNPS-10 system is an **open-source research project** that demonstrates multi-dimensional 
+        analysis of national capabilities. This platform serves as an educational tool and research 
+        framework for understanding how different factors might contribute to national power assessment.
         
-        - Analyze power relationships between nations
-        - Track power transitions over time
-        - Understand dimensional contributions to overall power
-        - Generate academic-grade research outputs
+        **⚠️ Important:** This is a research demonstration using modeled data for educational purposes. 
+        Rankings should not be considered authoritative assessments.
         
-        #### Technical Specifications
-        - **Dimensions:** 9 core power dimensions
-        - **Methodology:** Quantitative aggregation with statistical validation
-        - **Temporal Coverage:** 2025-2029 projections
-        - **Update Frequency:** Annual assessments
-        - **Statistical Framework:** Correlation analysis, distribution modeling, trend analysis
+        #### Technical Implementation
         
-        #### Data Sources & Validation
-        - Official government statistics
-        - International organization databases
-        - Academic research publications
-        - Expert assessments and peer review
+        **Built with:**
+        - Python for data processing and analysis
+        - Streamlit for web interface
+        - Plotly for interactive visualizations
+        - Pandas & NumPy for data manipulation
         
-        #### Key Features
+        #### Open Source Information
         
-        - **Multi-dimensional Analysis**: Evaluates countries across multiple power dimensions
-        - **Temporal Analysis**: Tracks power changes over time (2025-2029)
-        - **Statistical Rigor**: Employs advanced statistical methods for accurate assessment
-        - **Interactive Visualization**: Provides intuitive charts and graphs for analysis
-        - **Academic Grade**: Meets standards for academic research and policy analysis
+        - **GitHub Repository:** https://github.com/Kelvin927/CNPS-10
+        - **License:** MIT Open Source
+        - **Purpose:** Educational and research demonstration
         
-        #### Methodology
+        #### Educational Goals
         
-        The CNPS-10 system uses a sophisticated scoring algorithm that considers:
-        
-        1. **Economic Power**: GDP, trade, financial markets
-        2. **Military Capabilities**: Defense spending, technological advancement
-        3. **Diplomatic Influence**: International relations, soft power
-        4. **Technological Innovation**: R&D investment, patent outputs
-        5. **Governance Quality**: Institutional effectiveness, rule of law
-        6. **Space Capabilities**: Space technology and exploration
-        7. **Intelligence & Cyber**: Information warfare, cyber capabilities
-        8. **Geographic Scale**: Territory, population, natural resources
-        9. **Social Power**: Cultural influence, education, social cohesion
-        
-        #### Academic Usage
-        
-        This system is designed for:
-        - **Researchers**: Academic studies on international relations
-        - **Policy Makers**: Strategic planning and policy formulation
-        - **Students**: Educational purposes and learning
-        - **Analysts**: Professional analysis and reporting
-        
-        #### Data Quality
-        
-        - **Objective**: Based on official statistical data
-        - **Transparent**: Clear methodology and calculations
-        - **Consistent**: Standardized across all countries
-        - **Updated**: Regular updates with latest available data
-        
-        #### Contact Information
-        For academic collaboration, data requests, or methodological inquiries, 
-        please refer to the project documentation and research guidelines.
-        
-        ### 📝 Citation
-        
-        When using CNPS-10 in academic work, please cite:
-        
-        ```
-        CNPS-10 Research Team. (2025). Comprehensive National Power Assessment System. 
-        Version 2.0.0. Academic Research Platform.
-        ```
-        
-        ### 📞 Contact
-        
-        For questions, suggestions, or collaboration opportunities:
-        - GitHub: https://github.com/cnps-10
-        - Issues: https://github.com/cnps-10/issues
-        - Documentation: https://github.com/cnps-10/docs
-        
-        ---
-        **Disclaimer:** This system is designed for academic research and educational purposes. 
-        The scores and rankings reflect analytical assessments based on available data and 
-        established methodologies in the field of international relations.
+        This tool demonstrates:
+        - Multi-dimensional data analysis techniques
+        - Interactive web application development
+        - Statistical visualization methods
+        - Research methodology concepts
         """)
         
-        # System statistics
-        st.subheader("System Statistics")
-        if system.latest_data is not None:
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric("Countries Analyzed", len(system.latest_data))
-            with col2:
-                st.metric("Data Dimensions", 9)
-            with col3:
-                if system.multi_year_data is not None:
-                    years_available = len(system.multi_year_data['year'].unique())
-                    st.metric("Years Available", years_available)
-        
-        # System information
+        # Technical information
         st.subheader("🔧 Technical Information")
         
         tech_col1, tech_col2 = st.columns(2)
         
         with tech_col1:
             st.info(f"""
-            **System Version**: 2.0.0  
+            **System Version**: 1.0.0  
             **Data Version**: {datetime.now().strftime('%Y-%m-%d')}  
             **Countries Covered**: {len(system.get_countries_by_year(selected_year))}  
             **Time Range**: {min(available_years)}-{max(available_years)}
@@ -1610,7 +1618,7 @@ def main():
             **Framework**: Streamlit {st.__version__}  
             **Data Processing**: pandas, numpy  
             **Visualization**: plotly  
-            **Memory Optimization**: ✅ Enabled
+            **License**: MIT Open Source
             """)
 
 if __name__ == "__main__":
